@@ -26,9 +26,9 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
   <link rel="preload" href="assets/fonts/Heebo-Variable.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/css/site.css?v=6">
+  <link rel="stylesheet" href="assets/css/site.css?v=7">
   <script>document.documentElement.classList.add("js");</script>
-  <script src="assets/js/site.js?v=6" defer></script>
+  <script src="assets/js/site.js?v=7" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -312,7 +312,7 @@
               <ol class="flow">
                 <li class="flow-step reveal"><span class="flow-num"><svg aria-hidden="true"><use href="#i-list"/></svg></span><div><h3>1. תוכנית שנבנית בשבילך</h3><p>ריצות קלות, אינטרוולים, טמפו וריצה ארוכה, לפי הרמה, הימים הפנויים והמטרה שלך.</p></div></li>
                 <li class="flow-step reveal" style="--d:80ms"><span class="flow-num"><svg aria-hidden="true"><use href="#i-watch"/></svg></span><div><h3>2. האימון מחכה בשעון</h3><p>כל ריצה מתוכננת נשלחת ללוח האימונים ב-<span class="ltr">Garmin Connect</span> כאימון מובנה: חימום, אינטרוולים עם יעד קצב או דופק, ושחרור. השעון מוביל אותך שלב אחרי שלב.</p></div></li>
-                <li class="flow-step reveal" style="--d:160ms"><span class="flow-num"><svg aria-hidden="true"><use href="#i-sync"/></svg></span><div><h3>3. התוכנית לומדת ממך</h3><p>בסוף הריצה, הסיכום שלה (מרחק, זמן, קצב, דופק) חוזר ל-2Act. האימון מסומן כבוצע, והאימונים הבאים מותאמים לפי כללי אימון קבועים בשרת שלנו.</p></div></li>
+                <li class="flow-step reveal" style="--d:160ms"><span class="flow-num"><svg aria-hidden="true"><use href="#i-sync"/></svg></span><div><h3>3. התוכנית לומדת ממך</h3><p>בסוף הריצה, הסיכום שלה (מרחק, זמן, קצב, דופק, קצב צעדים, הקפות ומסלול) חוזר ל-2Act. האימון מסומן כבוצע, והאימונים הבאים מותאמים לפי כללי אימון קבועים בשרת שלנו.</p></div></li>
               </ol>
             </div>
 
@@ -327,8 +327,8 @@
                       <div class="mock-seg"><i></i><span>התאוששות</span><em>90 שנ׳</em></div>
                       <div class="mock-seg"><i></i><span>שחרור</span><em>8 דק׳</em></div>
                     </div>
-                    <div class="mock-card mock-conn"><i></i><span class="ltr">Garmin Connect</span><span>· מחובר</span></div>
-                    <div class="mock-btn">נשלח לשעון ✓</div>
+                    <div class="mock-card mock-conn"><span>השעון שלך</span></div>
+                    <div class="mock-btn">שליחה לשעון</div>
                   </div>
                 </div>
               </div>
@@ -342,7 +342,7 @@
                 </div>
                 <div class="watch-lug bottom"></div>
               </div>
-              <span class="sync-badge"><svg><use href="#i-sync"/></svg>מסתנכרן</span>
+              <span class="sync-badge">הדמיה · בפיתוח</span>
             </div>
           </div>
 
@@ -352,7 +352,7 @@
               <li><svg aria-hidden="true"><use href="#i-shield"/></svg>נשמרים רק במסד הנתונים שלנו, מוצפנים בדרך ובמנוחה.</li>
               <li><svg aria-hidden="true"><use href="#i-shield"/></svg>לא נמכרים, לא משמשים לפרסום ולא נשלחים לכלי אנליטיקה.</li>
               <li><svg aria-hidden="true"><use href="#i-shield"/></svg>לא נשלחים לשום מודל AI ולא משמשים לאימון מודלים, גם לא לג'יה.</li>
-              <li><svg aria-hidden="true"><use href="#i-shield"/></svg>ניתוק בלחיצה מההגדרות עוצר את הסנכרון ומוחק את פרטי החיבור.</li>
+              <li><svg aria-hidden="true"><use href="#i-shield"/></svg>ניתוק בלחיצה מההגדרות עוצר את הסנכרון, מוחק את פרטי החיבור ומודיע על כך ל-Garmin.</li>
             </ul>
             <p class="coach-foot">כל הפרטים במדיניות הפרטיות, <a href="https://alonknafo42-bit.github.io/act2-legal/privacy.html" rel="noopener">סעיף 3א: חיבור שעון Garmin</a>.</p>
             <p class="coach-foot" style="margin-block-start:8px">רוצה להיות מהראשונות לנסות? כתבי לנו: <a href="mailto:support@2act-app.com?subject=%D7%9E%D7%90%D7%9E%D7%A0%D7%AA%20%D7%A8%D7%99%D7%A6%D7%94" class="ltr">support@2act-app.com</a></p>
@@ -375,7 +375,7 @@
         </div>
 
         <ul class="facts">
-          <li class="reveal"><span class="num ltr">3,400+</span><p><b>נשים נרשמו</b> ל-2Act מאז ההשקה במרץ 2026.</p></li>
+          <li class="reveal"><span class="num ltr">3,400+</span><p><b>נשים נרשמו</b> ל-2Act מאז מרץ 2026.</p></li>
           <li class="reveal" style="--d:80ms"><span class="num ltr">40,000+</span><p><b>ימים תועדו</b> באפליקציה: אימונים, ארוחות, מים וצעדים.</p></li>
           <li class="reveal"><span class="num ltr">6,000+</span><p><b>ארוחות נסרקו</b> מתמונה בסריקת הארוחה.</p></li>
           <li class="reveal" style="--d:80ms"><span class="num ltr">500+</span><p><b>נשים הצטרפו</b> לאתגר 75 יום.</p></li>
