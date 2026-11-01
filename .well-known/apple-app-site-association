@@ -1,0 +1,14 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["GF34ZXYPDN.com.act2app.mobile"],
+        "components": [
+          { "/": "/invite/*" },
+          { "/": "/c/*" },
+          { "/": "/r/*" }
+        ]
+      }
+    ]
+  }
+}

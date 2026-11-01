@@ -3,19 +3,89 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>העמוד לא נמצא · 2Act</title>
+  <title>2Act</title>
   <meta name="robots" content="noindex">
+  <meta property="og:title" content="2Act">
+  <meta property="og:description" content="אפליקציה בעברית לאימונים, לתזונה ולהרגלים טובים">
+  <meta property="og:image" content="https://2act-app.com/assets/img/og-image.jpg">
   <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="stylesheet" href="/assets/css/site.css">
+  <style>
+    #invite[hidden], #missing[hidden], #copied[hidden] { display: none; }
+    .invite-code { font-size: 1.75rem; font-weight: 700; letter-spacing: .08em; direction: ltr; padding: 12px 20px; border-radius: 14px; background: var(--sage-50); user-select: all; }
+    .invite-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+    .btn-quiet { background: var(--sage-600); }
+    .invite-note { max-width: 34ch; }
+  </style>
 </head>
 <body>
   <main class="section" style="min-height:100vh;display:grid;place-items:center;text-align:center">
-    <div class="wrap" style="display:grid;gap:20px;justify-items:center">
+    <div class="wrap" id="missing" style="display:grid;gap:20px;justify-items:center">
       <img src="/assets/img/gia/point-300.webp" width="180" height="241" alt="ג'יה מצביעה">
       <h1 class="h-section">העמוד הזה הלך לרוץ.</h1>
       <p class="lead" lang="en" dir="ltr">This page went for a run.</p>
       <p><a class="btn" href="/">לעמוד הבית</a> <a class="btn" href="/en/" lang="en" style="background:var(--sage-600)">English home</a></p>
     </div>
+    <div class="wrap" id="invite" hidden style="display:grid;gap:20px;justify-items:center">
+      <img src="/assets/img/gia/point-300.webp" width="180" height="241" alt="ג'יה מצביעה">
+      <h1 class="h-section" id="invite-title"></h1>
+      <p class="lead invite-note" id="invite-lead"></p>
+      <div class="invite-code" id="invite-code"></div>
+      <div class="invite-actions">
+        <a class="btn" id="invite-open"></a>
+        <a class="btn btn-quiet" id="invite-store" rel="noopener">להורדת 2Act</a>
+      </div>
+      <p id="copied" role="status">הקוד הועתק</p>
+      <p class="invite-note">עדיין אין לך את האפליקציה? בלחיצה על ההורדה הקוד מועתק. אם הוא לא יזוהה בפתיחה הראשונה, אפשר להזין אותו ידנית.</p>
+    </div>
   </main>
+  <script>
+    // GitHub Pages has no dynamic routes, so every shared link lands here.
+    // Only codes matching the app's exact alphabet are ever shown or linked.
+    (function () {
+      var routes = {
+        invite: { re: /^GILI-[A-HJ-NP-Z2-9]{6}$/, scheme: "invite", title: "הוזמנת ל-2Act", lead: "חברה שלחה לך קוד הצטרפות.", open: "הצטרפות באפליקציה" },
+        c: { re: /^CINV-[A-HJ-NP-Z2-9]{6}$/, scheme: "c", title: "הוזמנת לאתגר ב-2Act", lead: "חברה מזמינה אותך לעשות אתגר ביחד.", open: "הצטרפות לאתגר" },
+        r: { re: /^RCP-[A-HJ-NP-Z2-9]{6}$/, scheme: "r", title: "שיתפו איתך מתכון", lead: "המתכון מחכה לך ב-2Act.", open: "פתיחה באפליקציה" }
+      };
+      var parts = location.pathname.split("/").filter(Boolean);
+      var route = parts.length === 2 ? routes[parts[0]] : null;
+      var code = route ? decodeURIComponent(parts[1]).toUpperCase() : "";
+      if (!route || !route.re.test(code)) return;
+
+      var byId = function (id) { return document.getElementById(id); };
+      byId("missing").hidden = true;
+      byId("missing").style.display = "none";
+      byId("invite").hidden = false;
+      byId("invite-title").textContent = route.title;
+      byId("invite-lead").textContent = route.lead;
+      byId("invite-code").textContent = code;
+      byId("invite-open").textContent = route.open;
+      byId("invite-open").href = "act2://" + route.scheme + "/" + code;
+      var store = byId("invite-store");
+      store.href = /android/i.test(navigator.userAgent)
+        ? "https://play.google.com/store/apps/details?id=com.act2.app"
+        : "https://apps.apple.com/il/app/2act/id6762620137";
+
+      function fallbackCopy() {
+        var range = document.createRange();
+        range.selectNodeContents(byId("invite-code"));
+        var sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+        try { return document.execCommand("copy"); } catch (e) { return false; } finally { sel.removeAllRanges(); }
+      }
+      function copy() {
+        var shown = function () { byId("copied").hidden = false; };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(code).then(shown, function () { if (fallbackCopy()) shown(); });
+        } else if (fallbackCopy()) {
+          shown();
+        }
+      }
+      store.addEventListener("click", copy);
+      byId("invite-code").addEventListener("click", copy);
+    })();
+  </script>
 </body>
 </html>
