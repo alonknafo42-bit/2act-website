@@ -11,7 +11,7 @@
   <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="stylesheet" href="/assets/css/site.css">
   <style>
-    #invite[hidden], #missing[hidden], #copied[hidden] { display: none; }
+    [hidden] { display: none !important; }
     .invite-code { font-size: 1.75rem; font-weight: 700; letter-spacing: .08em; direction: ltr; padding: 12px 20px; border-radius: 14px; background: var(--sage-50); user-select: all; }
     .invite-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
     .btn-quiet { background: var(--sage-600); }
@@ -55,7 +55,6 @@
 
       var byId = function (id) { return document.getElementById(id); };
       byId("missing").hidden = true;
-      byId("missing").style.display = "none";
       byId("invite").hidden = false;
       byId("invite-title").textContent = route.title;
       byId("invite-lead").textContent = route.lead;
